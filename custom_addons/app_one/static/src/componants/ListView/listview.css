@@ -1,0 +1,41 @@
+/* Container */
+.list-view-container {
+    padding: 24px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+/* Title */
+.list-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #212529;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Table */
+.property-table {
+    background: #fff;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Header */
+.property-table thead th {
+    background: #30476a;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 14px;
+}
+
+/* Body */
+.property-table tbody td {
+    padding: 14px;
+    vertical-align: middle;
+    border-top: 1px solid #e9ecef;
+    color: #495057;
+}
+
+

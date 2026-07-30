@@ -1,0 +1,379 @@
+<odoo>
+
+    <record id="property_report" model="ir.actions.report">
+        <field name="name">Property Report</field>
+        <field name="model">property</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="binding_model_id" ref="model_property"/>
+        <field name="binding_type">report</field>
+        <field name="report_name">app_one.property_report_template</field>
+    </record>
+
+
+    <template id="property_report_template">
+
+        <t t-call="web.html_container">
+
+            <t t-foreach="docs" t-as="o">
+
+                <t t-call="web.external_layout">
+
+                    <div class="page">
+
+                        <style>
+                            .property-header {
+                                background:#4f46e5;
+                                color:white;
+                                padding:25px;
+                                border-radius:12px;
+                                margin-bottom:25px;
+                            }
+
+                            .property-header h1 {
+                                font-size:32px;
+                                margin:0;
+                            }
+
+                            .subtitle {
+                                opacity:.8;
+                                font-size:14px;
+                            }
+
+                            .card {
+                                border:1px solid #ddd;
+                                border-radius:12px;
+                                padding:20px;
+                                margin-bottom:20px;
+                            }
+
+                            .card-title {
+                                color:#4f46e5;
+                                font-size:18px;
+                                font-weight:bold;
+                                border-bottom:2px solid #4f46e5;
+                                padding-bottom:8px;
+                                margin-bottom:15px;
+                            }
+
+                            .info-table {
+                                width:100%;
+                            }
+
+                            .info-table td {
+                                padding:8px;
+                            }
+
+                            .label {
+                                font-weight:bold;
+                                color:#555;
+                            }
+
+                            .price-box {
+                                background:#ecfdf5;
+                                border-left:5px solid #10b981;
+                                padding:15px;
+                                border-radius:8px;
+                            }
+
+                            .badge {
+                                background:#4f46e5;
+                                color:white;
+                                padding:5px 10px;
+                                border-radius:20px;
+                            }
+
+                            .line-table {
+                                width:100%;
+                                border-collapse:collapse;
+                            }
+
+                            .line-table th {
+                                background:#4f46e5;
+                                color:white;
+                                padding:12px;
+                            }
+
+                            .line-table td {
+                                padding:12px;
+                                border-bottom:1px solid #ddd;
+                            }
+
+                            .footer-box {
+                                margin-top:40px;
+                                text-align:center;
+                                color:#777;
+                                font-size:12px;
+                            }
+                        </style>
+
+
+                        <!-- HEADER -->
+                        <div class="property-header">
+
+                            <h1>
+                                🏠
+                                <span t-field="o.name"/>
+                            </h1>
+
+                            <div class="subtitle" style="font-family:'Jersey10Charted'">
+                                Property Report |
+                                <span t-field="o.postcode"/>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+
+
+                            <!-- GENERAL INFORMATION -->
+                            <div class="col-6">
+
+                                <div class="card">
+
+                                    <div class="card-title">
+                                        📌 General Information
+                                    </div>
+
+                                    <table class="info-table">
+
+                                        <tr>
+                                            <td class="label">Postcode</td>
+                                            <td>
+                                                <span t-field="o.postcode"/>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="label">Available Date</td>
+                                            <td>
+                                                <span t-field="o.date_availability"/>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="label">Bedrooms</td>
+                                            <td>
+                                                <span class="badge">
+                                                    <span t-field="o.bedrooms"/>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="label">Living Area</td>
+                                            <td>
+                                                <span t-field="o.living_area"/> m²
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="label">Facades</td>
+                                            <td>
+                                                <span t-field="o.facades"/>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="label">Description</td>
+                                            <td>
+                                                <span t-field="o.description"/>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+
+                                </div>
+
+
+                                <div class="price-box">
+
+                                    <h3>
+                                        💰 Price Details
+                                    </h3>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>Expected Price</td>
+                                            <td>
+                                                <strong>
+                                                    <span t-field="o.expected_price"/>
+                                                </strong>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Selling Price</td>
+                                            <td>
+                                                <strong>
+                                                    <span t-field="o.selling_price"/>
+                                                </strong>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Difference</td>
+                                            <td>
+                                                <span t-field="o.diff"/>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- OWNER INFORMATION -->
+                            <div class="col-6">
+
+                                <div class="card">
+
+                                    <div class="card-title">
+                                        👤 Owner Information
+                                    </div>
+
+                                    <table class="info-table">
+
+                                        <tr>
+                                            <td class="label">Owner</td>
+                                            <td>
+                                                <span t-field="o.owner_id"/>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="label">Address</td>
+                                            <td>
+                                                <span t-field="o.owner_address"/>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="label">Phone</td>
+                                            <td>
+                                                <span t-field="o.owner_phone"/>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+
+                                </div>
+
+
+
+                                <div class="card">
+
+                                    <div class="card-title">
+                                        🌳 Property Features
+                                    </div>
+
+                                    <table class="info-table">
+
+                                        <tr>
+                                            <td class="label">Garage</td>
+                                            <td>
+                                                <span t-if="o.garage">✅ Yes</span>
+                                                <span t-if="not o.garage">❌ No</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="label">Garden</td>
+                                            <td>
+                                                <span t-if="o.garden">✅ Yes</span>
+                                                <span t-if="not o.garden">❌ No</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="label">Garden Area</td>
+                                            <td>
+                                                <span t-field="o.garden_area"/>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="label">Orientation</td>
+                                            <td>
+                                                <span t-field="o.garden_orientation"/>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- PROPERTY LINES -->
+
+                        <div class="card">
+
+                            <div class="card-title">
+                                🛏 Rooms Details
+                            </div>
+
+
+                            <table class="line-table">
+
+                                <thead>
+                                    <tr>
+                                        <th>Area</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+
+
+                                <tbody>
+
+                                    <t t-foreach="o.line_ids" t-as="line">
+
+                                        <tr>
+
+                                            <td>
+                                                <span t-field="line.area"/>
+                                                m²
+                                            </td>
+
+                                            <td>
+                                                <span t-field="line.description"/>
+                                            </td>
+
+                                        </tr>
+
+                                    </t>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+
+
+                        <!-- FOOTER -->
+
+                        <div class="footer-box">
+                            Generated Property Report
+                        </div>
+
+
+                    </div>
+
+                </t>
+
+            </t>
+
+        </t>
+
+    </template>
+
+</odoo>

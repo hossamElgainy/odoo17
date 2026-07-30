@@ -1,0 +1,9 @@
+# Ignore the official Odoo source
+odoo17/
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/

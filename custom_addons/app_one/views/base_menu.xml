@@ -1,0 +1,17 @@
+<odoo>
+    <menuitem
+        id="real_state_root_menu"
+        name ="Real Estate"
+        web_icon = "app_one,static/description/icon.jpg"
+    />
+    <menuitem
+        id="properties_menu"
+        name ="Properties"
+        parent = "real_state_root_menu"
+    />
+    <menuitem
+        id="configration_menu"
+        name ="configration"
+        parent = "real_state_root_menu"
+    />
+</odoo>

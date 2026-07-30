@@ -1,0 +1,39 @@
+<templates xml:space="preserve">
+    <t t-name="app_one.ListView">
+        <div class="list-view-container">
+            <h1 class="list-title">Properties</h1>
+            <button class="btn btn-primary" t-on-click="createRecord">Create New</button>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped property-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>PostCode</th>
+                            <th>Date Availability</th>
+                            <th>Selling Price</th>
+                            <th>State</th>
+                            <th>Owner</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="state.records" t-as="record" t-key="record.id">
+                            <tr>
+                                <td><t t-esc="record.name"/></td>
+                                <td><t t-esc="record.postcode"/></td>
+                                <td><t t-esc="record.date_availability"/></td>
+                                <td><t t-esc="record.selling_price"/></td>
+                                <td><t t-esc="record.state"/></td>
+                                <td><t t-esc="record.owner_id[1]"/></td>
+                                <td>
+                                    <button class="btn btn-danger" t-on-click="deleteRecord.bind(this,record.id)">Delete</button>
+                                </td>
+
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </t>
+</templates>
